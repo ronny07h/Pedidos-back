@@ -10,7 +10,7 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    private final String jwtSecret = "esta-es-una-clave-secreta-muy-larga-y-segura-para-el-examen-final";
+    private final String jwtSecret = "esta-es-una-clave-secreta-";
     private final int jwtExpirationMs = 86400000; // 24 hours
 
     private Key getSigningKey() {

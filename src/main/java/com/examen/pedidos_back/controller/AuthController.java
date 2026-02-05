@@ -18,11 +18,14 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+        System.out.println("Login attempt: " + loginRequest.getUsername());
         // Hardcoded credentials as per user request: admin / admin
         if ("admin".equals(loginRequest.getUsername()) && "admin".equals(loginRequest.getPassword())) {
+            System.out.println("Login success!");
             String jwt = jwtUtils.generateJwtToken(loginRequest.getUsername());
             return ResponseEntity.ok(new LoginResponse(jwt));
         } else {
+            System.out.println("Login failed: wrong credentials");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
     }

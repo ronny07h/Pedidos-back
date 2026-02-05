@@ -10,10 +10,18 @@ services:
     runtime: docker
     plan: free
     envVars:
-      - key: RENDER_DB_URL
+      - key: DB_HOST
         fromDatabase:
           name: pedidosweb-db
-          property: connectionString
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: pedidosweb-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: pedidosweb-db
+          property: database
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: pedidosweb-db
