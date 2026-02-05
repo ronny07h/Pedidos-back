@@ -34,3 +34,5 @@ build/
 
 # Local tests
 src/test/java/
+tests/k6/
+docker-compose.yml
