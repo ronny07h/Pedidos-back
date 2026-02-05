@@ -13,7 +13,7 @@ services:
       - key: DB_HOST
         fromDatabase:
           name: pedidosweb-db
-          property: host
+          property: internalHost
       - key: DB_PORT
         fromDatabase:
           name: pedidosweb-db
