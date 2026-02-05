@@ -18,14 +18,18 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
-        System.out.println("Login attempt: " + loginRequest.getUsername());
+        String username = (loginRequest.getUsername() != null) ? loginRequest.getUsername().trim() : "";
+        String password = (loginRequest.getPassword() != null) ? loginRequest.getPassword().trim() : "";
+        
+        System.out.println("DEBUG: Intento de login - Usuario: [" + username + "] Clave: [" + password + "]");
+        
         // Hardcoded credentials as per user request: admin / admin
-        if ("admin".equals(loginRequest.getUsername()) && "admin".equals(loginRequest.getPassword())) {
-            System.out.println("Login success!");
-            String jwt = jwtUtils.generateJwtToken(loginRequest.getUsername());
+        if ("admin".equals(username) && "admin".equals(password)) {
+            System.out.println("DEBUG: Login EXITOSO");
+            String jwt = jwtUtils.generateJwtToken(username);
             return ResponseEntity.ok(new LoginResponse(jwt));
         } else {
-            System.out.println("Login failed: wrong credentials");
+            System.out.println("DEBUG: Login FALLIDO - Credenciales no coinciden");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
     }
