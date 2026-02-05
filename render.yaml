@@ -24,14 +24,4 @@ services:
           property: password
       - key: SPRING_JPA_HIBERNATE_DDL_AUTO
         value: update
-    dockerContext: Pedidos-back
-
-  # Frontend
-  - type: web
-    name: pedidos-front
-    runtime: docker
-    plan: free
-    envVars:
-      - key: VITE_API_URL
-        value: https://pedidos-back.onrender.com/api # Change this after your first deploy
-    dockerContext: Pedidos-front
+    dockerContext: .
